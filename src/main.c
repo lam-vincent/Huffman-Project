@@ -180,11 +180,38 @@ void afficherTab(listeChar *liste)
 	}
 }
 
-listeChar *sorting(listeChar *liste)
+void bubbleSort(struct Caractere *start)
 {
-	/*
+	int swapped, i;
+	Caractere *ptr1;
+	Caractere *lptr = NULL;
 
-	*/
+	if (start == NULL)
+		return;
+
+	do
+	{
+		swapped = 0;
+		ptr1 = start;
+
+		while (ptr1->suivant != lptr)
+		{
+			if (ptr1->frequence > ptr1->suivant->frequence)
+			{
+				swap(ptr1, ptr1->suivant);
+				swapped = 1;
+			}
+			ptr1 = ptr1->suivant;
+		}
+		lptr = ptr1;
+	} while (swapped);
+}
+
+void swap(Caractere *a, Caractere *b)
+{
+	int temp = a->frequence;
+	a->frequence = b->frequence;
+	b->frequence = temp;
 }
 
 int main(int argc, char *argv[])
@@ -212,4 +239,4 @@ int main(int argc, char *argv[])
 	}
 
 	return 0;
-}
+};

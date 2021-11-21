@@ -29,8 +29,9 @@ listeChar* tabCarac = NULL;
 int existeFichier(char* nomFichier);
 int freqChar(char carac, char* nomFichier);
 void lectureTexte(char* nomFichier, listeChar* liste);
-void ajoutTab(char car,char* nomFichier, listeChar* liste);
+void ajoutTabFin(char car,char* nomFichier, listeChar* liste);
 void afficherTab(listeChar* liste);
 listeChar* initialisationListe(void);
+Caractere* ajoutTab(char car, char* nomFichier, listeChar* liste);
 
 #endif

@@ -1,5 +1,6 @@
 #include "header.h"
 
+// Cette fonction donne un booléen en sortie : 1 si le fichier existe ; 0 si le fichier n'existe pas
 int existeFichier(char *nomFichier)
 {
 	FILE *file = fopen(nomFichier, "r");
@@ -15,6 +16,7 @@ int existeFichier(char *nomFichier)
 	}
 }
 
+// fonction qui calcule le nombre de chaque caractere de texte
 int freqChar(char carac, char *nomFichier)
 {
 
@@ -52,6 +54,7 @@ int freqChar(char carac, char *nomFichier)
 	}
 }
 
+// initialise le tableau de listeChar
 listeChar *initialisationListe(void)
 {
 	listeChar *tabCarac = (listeChar *)malloc(sizeof(listeChar *));
@@ -64,6 +67,7 @@ listeChar *initialisationListe(void)
 	return tabCarac;
 }
 
+// va à la fin de la liste et ajoute un noeud Caractere à la liste
 void ajoutTabFin(char car, char *nomFichier, listeChar *liste)
 {
 	Caractere *nCarac;
@@ -94,6 +98,7 @@ void ajoutTabFin(char car, char *nomFichier, listeChar *liste)
 	}
 }
 
+// ajoute un noeud Caractere au début de la liste
 Caractere *ajoutTab(char car, char *nomFichier, listeChar *liste)
 {
 	Caractere *nCarac;
@@ -110,11 +115,12 @@ Caractere *ajoutTab(char car, char *nomFichier, listeChar *liste)
 	return nCarac;
 }
 
+// fonction qui lit un fichier .txt
 void lectureTexte(char *nomFichier, listeChar *liste)
 {
 	FILE *file;
 	char val;
-	int compteur = 0;
+	int compteur = 0; // que fait ce compteur ? compte le nombre de caractere different qui existe dans le .txt
 
 	Caractere *position = liste->premier;
 
@@ -168,6 +174,7 @@ void lectureTexte(char *nomFichier, listeChar *liste)
 	}
 }
 
+// fonction qui affiche le caractere et la frequence de chaque noeud de la liste
 void afficherTab(listeChar *liste)
 {
 
@@ -180,7 +187,8 @@ void afficherTab(listeChar *liste)
 	}
 }
 
-void bubbleSort(struct Caractere *start)
+// Prends la liste de caractère associé à son occurrence et le trie par ordre croissant en fonction de la fréquence.
+void bubbleSort(Caractere *start)
 {
 	int swapped, i;
 	Caractere *ptr1;
@@ -207,6 +215,7 @@ void bubbleSort(struct Caractere *start)
 	} while (swapped);
 }
 
+//échange la position de deux noeud
 void swap(Caractere *a, Caractere *b)
 {
 	int temp = a->frequence;

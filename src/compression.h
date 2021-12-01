@@ -12,7 +12,9 @@ int calculNbrBits(char charRecherche, Arbre* tree);
 int max(int a , int b);
 int min(int a, int b);
 void creationCodeBinaire(listeArbre* listTree, listeChar* listChar);
+void afficherNbrBitsTabChar(listeChar* liste);
 void afficherBitsTabChar(listeChar* liste);
-
+int estFeuille(Arbre* arbre);
+void getNewBits(Arbre* tree, char* newBits);
 
 #endif

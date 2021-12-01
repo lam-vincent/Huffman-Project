@@ -8,6 +8,7 @@ typedef struct Caractere {
 	int frequence;
 	char carac;
 	int nbrBits;
+	char* newBits;
 	struct Caractere* suivant;
 } Caractere;
 

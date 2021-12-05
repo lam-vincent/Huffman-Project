@@ -4,34 +4,33 @@ void compression(listeChar* listeCarac, listeArbre* listTree, char* nomFichierEn
 	printf("\nCompression\n");
 	printf("\nentrer=%s\n", nomFichierEntre);
 	lectureTexte(nomFichierEntre, listeCarac);
-	afficherTabChar(listeCarac);
-	printf("\ntest3_5\n");
+	//afficherTabChar(listeCarac);
+	//printf("\ntest3_5\n");
 	creationListeArbre(listTree, listeCarac);
 	//printf("\ntest4\n");
 	//afficherTabTree(listTree);
 	creationArbre(listTree);
 	//afficherTabTree(listTree);
-	printf("\ntailleTabChar=%i\n", tailleListeChar(listeCarac));
-	print2D(listTree->premier->dataArbre);
-	printf("\ntest5\n");
-	//printf("\nnbrBits = %d\n", calculNbrBits('m', listTree->premier->dataArbre))
+	//printf("\ntailleTabChar=%i\n", tailleListeChar(listeCarac));
+	//print2D(listTree->premier->dataArbre);
+	//printf("\ntest5\n");
 	creationCodeBinaire(listTree, listeCarac);
-	afficherNbrBitsTabChar(listeCarac);
-	afficherBitsTabChar(listeCarac);
+	//printf("\nnbrBits = %d\n", calculNbrBits('m', listTree->premier->dataArbre));
+	//afficherNbrBitsTabChar(listeCarac);
+	//afficherBitsTabChar(listeCarac);
 	printf("\nsortie=%s\n", nomFichierSorti);
 }
 
 int calculNbrBits(char charRecherche, Arbre* tree) {
 
-	if(tree !=NULL) {
+	if(tree != NULL) {
 
 		if(tree->dataChar->carac==charRecherche) {
 			return 0;
 		} else {
 			return 1 + max(calculNbrBits(charRecherche, tree->fg), calculNbrBits(charRecherche, tree->fd));
 		}
-	}
-	else {
+	} else {
 		return -1;
 	}
 }
@@ -49,15 +48,29 @@ void creationCodeBinaire(listeArbre* listTree, listeChar* listChar){
 	Arbre* arbreHuff= listTree->premier->dataArbre;
 	Caractere* current = listChar->premier;
 
-	while (current!=NULL)
+	char* newBits;
+
+
+	while (current != NULL)
 	{
 		current->nbrBits = calculNbrBits(current->carac, arbreHuff);
-		free(current->newBits);
-		if((current->newBits = (char*) malloc(((current->nbrBits)+1)*sizeof(char))) == NULL){
+
+		current = current->suivant;
+	}
+
+	current = listChar->premier;
+
+	while (current != NULL)
+	{
+		int nbrBits = current->nbrBits+3;
+		//print2D(listTree->premier->dataArbre);
+		//printf("\ntest15\n");
+		if((newBits = (char*) malloc((nbrBits*sizeof(char)))) == NULL){
 			printf("\nErreur allocation memoire pour newBits\n");
 			exit(-1);
 		}
-		getNewBits(arbreHuff, current->newBits);
+		//printf("\ntest16\n");
+		getNewBits(arbreHuff,newBits, nbrBits);
 		current = current->suivant;
 	}
 }
@@ -90,17 +103,36 @@ int estFeuille(Arbre* arbre){
 	}
 }
 
-void getNewBits(Arbre* tree, char* newBits){
-	
-	char zero[2] = "0";
-	char un[2] = "1";
-	char end = '\0';
-	
-	if(estFeuille(tree)){
-		strcat(newBits, &end);
-		return;
-	}
-	getNewBits(tree->fg, strcat(newBits, zero));
-	getNewBits(tree->fd, strcat(newBits, un));
-}
+void getNewBits(Arbre* tree, char* newBits, int nbrBits){
 
+	char un[2]="1";
+	char zero[2]="0";
+
+	if(tree!=NULL){
+		if(tree->fg != NULL){
+
+			if((tree->fg->dataChar->newBits = (char*) malloc((nbrBits*sizeof(char)))) == NULL){
+				printf("\nErreur allocation memoire pour newBits\n");
+				exit(-1);
+			}
+			//printf("\nnewBitsG=%s\n", newBitsG);
+			strcat(tree->fg->dataChar->newBits, newBits);
+			strcat(tree->fg->dataChar->newBits, zero);
+			//printf("\ntree->bg->fg->dataChar->newBits=%s\n",tree->bg->fg->dataChar->newBits);
+			//printf("\nnewNodeBits=%s\n",newNodeBitsG);
+			getNewBits(tree->fg, tree->fg->dataChar->newBits, nbrBits);
+		}
+		if(tree->fd != NULL){
+
+			if((tree->fd->dataChar->newBits = (char*) malloc((nbrBits*sizeof(char)))) == NULL){
+				printf("\nErreur allocation memoire pour newBits\n");
+				exit(-1);
+			}
+			//printf("\nnewBitsD=%s\n", newBitsD);
+			strcat(tree->fd->dataChar->newBits, newBits);
+
+			strcat(tree->fd->dataChar->newBits, un);
+			getNewBits(tree->fd, tree->fd->dataChar->newBits, nbrBits);
+		}
+	}
+}

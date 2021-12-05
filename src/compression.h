@@ -15,6 +15,8 @@ void creationCodeBinaire(listeArbre* listTree, listeChar* listChar);
 void afficherNbrBitsTabChar(listeChar* liste);
 void afficherBitsTabChar(listeChar* liste);
 int estFeuille(Arbre* arbre);
-void getNewBits(Arbre* tree, char* newBits);
+void getNewBits(Arbre* tree, char* newBits, int nbrBits);
+void suppFeuilleGauche(Arbre* arbre);
+void suppFeuilleDroite(Arbre* arbre);
 
 #endif

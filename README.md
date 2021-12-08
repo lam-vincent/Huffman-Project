@@ -15,7 +15,7 @@ Pour exécuter le programme, nous sommes obligés d’utiliser Linux.
 
 ## Ligne de compilation
 
-Nous avons écrit un Makefile. Donc la ligne de compilation à écrire dans le terminal est “make”. Grâce à la réalisation du makefile pour compiler le programme, il suffit d’écrire “make” dans le terminal.
+Nous avons écrit un Makefile. Grâce à la réalisation du makefile pour compiler le programme, il suffit d’écrire “make” dans le terminal.
 
 - Pour compiler le programme
   ```sh

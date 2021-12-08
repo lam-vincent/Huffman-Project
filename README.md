@@ -1,10 +1,6 @@
-# PROJET HUFFMAN 👨‍💻
+# PROJET HUFFMAN 👨‍💻 ‍💻 📚
 
-
-👨‍💻
-
-
-
+### Démonstration de la création de l'arbre qui rend le codage de Huffman possible
 ![HuffmanDemo](https://upload.wikimedia.org/wikipedia/commons/a/ac/Huffman_huff_demo.gif)
 
 <!-- INTRODUCTION -->

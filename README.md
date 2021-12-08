@@ -25,7 +25,7 @@ Grâce à la réalisation du makefile pour compiler le programme, il suffit d’
 
 - Pour compresser le fichier, la structure est la suivant :
   ```sh
-  ./bin/main -c [FILE] [DIRECTORY]
+  ./bin/main -c [SOURCE] [DIRECTORY]
   ```
 
 - Vous pouvez écrire : 
@@ -35,14 +35,13 @@ Grâce à la réalisation du makefile pour compiler le programme, il suffit d’
 
 - Pour décompresser le fichier, la structure est la suivant :
   ```sh
-  ./bin/main -c [FILE] [DIRECTORY]
+  ./bin/main -c [SOURCE] [DIRECTORY]
   ```
 
 - Vous pouvez écrire :
   ```sh
   ./bin/main -d data/loremComp.txt data/loremDecomp.txt
   ```
-
 
 <p align="right">(<a href="#top">retourner en haut de la page</a>)</p>
 

@@ -7,8 +7,6 @@
 Dans le cadre de notre projet informatique de PréING 2, notre groupe a programmé en C l’algorithme de Huffman, un algorithme dont l’objectif est de compresser des fichiers texte. 
 Précisément, nous devions créer une archive contenant les fichiers sources du code commenté, les fichiers textes et un fichier README contenant la ligne de compilation et la commande d'exécution à écrire dans un terminal sur Linux. 
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 ### Prérequis
 
 Pour exécuter le programme, nous sommes obligés d’utiliser Linux. 
@@ -34,6 +32,9 @@ Nous avons écrit un Makefile. Donc la ligne de compilation à écrire dans le t
   ```sh
   ./bin/main -d data/loremComp.txt data/loremDecomp.txt
   ```
+
+
+<p align="right">(<a href="#top">retourner en haut de la page</a>)</p>
 
 
 

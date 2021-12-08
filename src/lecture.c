@@ -51,27 +51,32 @@ listeChar* initialisationListeChar(listeChar* liste){
     return liste;
 }
 
-void ajoutTabFin(char car, char* nomFichier, listeChar* liste){
+void ajoutTabFin(char car, int frequence, char* bits, int nbrBits, listeChar* liste){
 	Caractere* nCarac;
 	
 	if((nCarac = (Caractere*) malloc(sizeof(Caractere))) == NULL){
         exit(-1);
     }
-    
+	if((nCarac->newBits = (char*) malloc(nbrBits*sizeof(char))) == NULL){
+        exit(-1);
+    }   
 	Caractere* current = liste->premier;
     if(current == NULL){
         nCarac->suivant = NULL;
         nCarac->carac = car;
-		nCarac->frequence = freqChar(car, nomFichier);
+		nCarac->frequence = frequence;
+		nCarac->nbrBits = nbrBits;
+		nCarac->newBits = bits;
         liste->premier = nCarac;
     }else{
         while (current->suivant != NULL)
         {
             current = current->suivant;
         }
-        nCarac->suivant = NULL;
         nCarac->carac = car;
-		nCarac->frequence = freqChar(car, nomFichier);
+		nCarac->frequence = frequence;
+		nCarac->nbrBits = nbrBits;
+		nCarac->newBits = bits;
         current->suivant = nCarac;
     }
 
@@ -137,8 +142,10 @@ void ajoutListeChar(listeChar* liste, char carac, int freq){
 			}
 		}else{
 			if(current == NULL){
-				nElement->suivant = liste->premier;
-				liste->premier = nElement;
+				if(previous->carac != nElement->carac){
+					nElement->suivant = liste->premier;
+					liste->premier = nElement;
+				}
 			}else{
 				while(current->suivant != NULL && current->frequence <= nElement->frequence){
 					previous = previous->suivant;
@@ -238,11 +245,14 @@ int tailleListeChar(listeChar* liste){
 
 	int taille = 0;
 
-	while (current != NULL)
-	{
-		current = current->suivant;
-		taille++;
+	if(current == NULL){
+		return -1;
+	}else{
+		while (current != NULL)
+		{
+			current = current->suivant;
+			taille++;
+		}
+		return taille;
 	}
-	
-	return taille;
 }

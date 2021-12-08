@@ -6,6 +6,7 @@
 #include <string.h>
 #include "lecture.h"
 #include "arbre_huff.h"
+#include "decompression.h"
 
 void compression(listeChar* listeCarac, listeArbre* listTree, char* nomFichierEntre, char* nomFichierSorti);
 int calculNbrBits(char charRecherche, Arbre* tree);
@@ -18,5 +19,7 @@ int estFeuille(Arbre* arbre);
 void getNewBits(Arbre* tree, char* newBits, int nbrBits);
 void suppFeuilleGauche(Arbre* arbre);
 void suppFeuilleDroite(Arbre* arbre);
+void ecritureFichier(char* nomFichierEntre, char* nomFichierSortie, listeArbre* listTree, listeChar* listChar, int nbrBits);
+void initFichierSortieCompression(char* nomFichier);
 
 #endif

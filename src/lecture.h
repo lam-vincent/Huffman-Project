@@ -19,7 +19,7 @@ typedef struct listeChar {
 int existeFichier(char* nomFichier);
 int freqChar(char carac, char* nomFichier);
 void lectureTexte(char* nomFichier, listeChar* liste);
-void ajoutTabFin(char car,char* nomFichier, listeChar* liste);
+void ajoutTabFin(char car, int frequence, char* bits, int nbrBits, listeChar* liste);
 void afficherTabChar(listeChar* liste);
 listeChar* initialisationListeChar(listeChar* liste);
 Caractere* ajoutTab(char car, char* nomFichier, listeChar* liste);

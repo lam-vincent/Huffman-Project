@@ -6,5 +6,7 @@
 #include "lecture.h"
 #include "arbre_huff.h"
 #include "compression.h"
+#include "decompression.h"
+
 
 #endif

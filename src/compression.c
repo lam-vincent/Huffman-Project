@@ -1,8 +1,8 @@
 #include "compression.h"
 
-void compression(listeChar* listeCarac, listeArbre* listTree, char* nomFichierEntre, char* nomFichierSorti) {
+void compression(listeChar* listeCarac, listeArbre* listTree, char* nomFichierEntre, char* nomFichierSortie) {
 	printf("\nCompression\n");
-	printf("\nentrer=%s\n", nomFichierEntre);
+	printf("\nFichier d'entre :%s\n", nomFichierEntre);
 	lectureTexte(nomFichierEntre, listeCarac);
 	//afficherTabChar(listeCarac);
 	//printf("\ntest3_5\n");
@@ -18,7 +18,8 @@ void compression(listeChar* listeCarac, listeArbre* listTree, char* nomFichierEn
 	//printf("\nnbrBits = %d\n", calculNbrBits('m', listTree->premier->dataArbre));
 	//afficherNbrBitsTabChar(listeCarac);
 	//afficherBitsTabChar(listeCarac);
-	printf("\nsortie=%s\n", nomFichierSorti);
+	printf("\nFichier de sortie :%s\n", nomFichierSortie);
+	ecritureFichier(nomFichierEntre, nomFichierSortie, listTree, listeCarac, listeCarac->premier->nbrBits);
 }
 
 int calculNbrBits(char charRecherche, Arbre* tree) {
@@ -90,7 +91,7 @@ void afficherBitsTabChar(listeChar* liste){
 	Caractere* current = liste->premier;
 
 	while(current!= NULL){
-		printf("\ncar=%c;bits=%s\n",current->carac, current->newBits);
+		printf("\ncar=%c;car%d;bits=%s\n",current->carac, (int)current->carac,current->newBits);
 		current = current->suivant;
 	}
 }
@@ -135,4 +136,99 @@ void getNewBits(Arbre* tree, char* newBits, int nbrBits){
 			getNewBits(tree->fd, tree->fd->dataChar->newBits, nbrBits);
 		}
 	}
+}
+
+void initFichierSortieCompression(char* nomFichier){
+    FILE* file = fopen(nomFichier, "a");
+
+    if(file == NULL){
+        printf("Fichier de sortie non creer.");
+        exit(-1);
+    }
+    fclose(file);
+}
+
+void ecritureFichier(char* nomFichierEntre, char* nomFichierSortie, listeArbre* listTree, listeChar* listChar, int nbrBits){
+    
+    initFichierSortieCompression(nomFichierSortie);
+
+    FILE* fileS = fopen(nomFichierSortie, "w");
+    if(fileS == NULL){
+        printf("Fichier de sortie non creer.");
+        exit(-1);
+    }
+
+    FILE* fileE = fopen(nomFichierEntre, "r");
+    if(fileE == NULL){
+        printf("Fichier d'entre non trouver.");
+        exit(-1);
+    }
+
+    Caractere* current = listChar->premier;
+
+	if(current == NULL){
+		printf("\nListe de caractère vide.\n");
+		exit(-1);
+	}
+
+    char val;
+    unsigned char bit = 0;
+    int fill = 0;
+    int taille = 0;
+	int nbrCaractere = listTree->premier->dataArbre->dataChar->frequence;
+
+    if(existeFichier(nomFichierSortie) && existeFichier(nomFichierEntre)){
+        //printf("\nExiste\n");
+		fprintf(fileS, "%d;", tailleListeChar(listChar));
+        fprintf(fileS, "%d;", nbrCaractere);
+        while(current != NULL){
+			//printf("%d", current->frequence);
+			//printf("%c_", current->carac);
+			//printf("%lu_", strlen(current->newBits));
+			//printf("%s;", current->newBits);
+            fprintf(fileS, "%d_%c_%lu_%s;", current->frequence, current->carac, strlen(current->newBits), current->newBits);
+			current = current->suivant;
+        }
+		rewind(fileE);
+        current = listChar->premier;
+		//(val = fgetc(fileE))!=EOF
+		while((fread(&val, sizeof(char), 1, fileE)>0)){
+            //printf("%c", val);
+			while(current->carac != val){
+                //printf("\ncurrent->carac=%c\n", current->carac);
+				current = current->suivant;
+			}
+			//printf("\ntest1\n");
+			//printf("current->caracSORTIE=%c\n", current->carac);
+			taille = strlen(current->newBits);
+			for(int i = 0; i<taille; i++) {
+				bit *=2;
+				if(current->newBits[i] == '1') {
+					bit += 1;
+				}
+				fill++;
+				if(fill == 8) {
+					fputc(bit, fileS);
+					//printf("-0x%02x\n", bit);
+					//printf("%u\n", bit);
+					fill = 0;
+					bit = 0;
+				}
+			}
+			current = listChar->premier;
+			nbrCaractere--;
+		}
+		if(fill != 0) {
+			for(int i = 0; i<8-fill; i++){
+				bit *= 2;
+			}
+			fputc(bit, fileS);
+		}
+		//printf("\nnbrCaractere=%d\n",nbrCaractere);
+    }else{
+        printf("\nExiste pas\n");
+    }
+
+	fclose(fileE);
+    fclose(fileS);
 }

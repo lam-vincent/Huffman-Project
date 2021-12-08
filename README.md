@@ -1,5 +1,7 @@
 # PROJET HUFFMAN
 
+![HuffmanDemo](https://upload.wikimedia.org/wikipedia/commons/a/ac/Huffman_huff_demo.gif)
+
 <!-- INTRODUCTION -->
 
 ## Introduction

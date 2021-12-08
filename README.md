@@ -35,7 +35,7 @@ Grâce à la réalisation du makefile pour compiler le programme, il suffit d’
 
 - Pour décompresser le fichier, la structure est la suivant :
   ```sh
-  ./bin/main -c [SOURCE] [DIRECTORY]
+  ./bin/main -d [SOURCE] [DIRECTORY]
   ```
 
 - Vous pouvez écrire :

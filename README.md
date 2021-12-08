@@ -15,15 +15,13 @@ Pour exécuter le programme, nous sommes obligés d’utiliser Linux.
 
 ## Ligne de compilation
 
-Nous avons écrit un Makefile. Grâce à la réalisation du makefile pour compiler le programme, il suffit d’écrire “make” dans le terminal.
+Grâce à la réalisation du makefile pour compiler le programme, il suffit d’écrire “make” dans le terminal.
 
 - Pour compiler le programme
   ```sh
   make
   ```
 ## Executer le programme
-
-
 
 - Pour compresser le fichier, la structure est la suivant :
   ```sh
@@ -44,8 +42,6 @@ Nous avons écrit un Makefile. Grâce à la réalisation du makefile pour compil
   ```sh
   ./bin/main -d data/loremComp.txt data/loremDecomp.txt
   ```
-
-Vous pouvez changer 
 
 
 <p align="right">(<a href="#top">retourner en haut de la page</a>)</p>

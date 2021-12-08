@@ -1,4 +1,4 @@
-# PROJET HUFFMAN
+# PROJET HUFFMAN 👨‍💻
 
 
 👨‍💻

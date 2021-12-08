@@ -46,6 +46,8 @@ Grâce à la réalisation du makefile pour compiler le programme, il suffit d’
   ./bin/main -d data/loremComp.txt data/loremDecomp.txt
   ```
 
+Pour [DIRECTORY], vous pouvez choisir le nom de votre fichier en sortie.
+
 <p align="right">(<a href="#top">retourner en haut de la page</a>)</p>
 
 

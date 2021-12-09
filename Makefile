@@ -36,17 +36,10 @@ $(OBJ)/%.o: $(SRC)/%.c
 
 .PHONY: clean save restore give
 
-save:
-	@$(CP) $(SRCS) $(HEADS) $(SAVE)
-	@echo Fichiers sauvegarde.
-
-restore:
-	@$(CP) $(RESTORESRC) $(RESTOREHEAD) $(SRC)
-	@echo Sauvegarde restaure.
-
 give:
-	@mkdir $(nameArchive) $(nameArchive)/$(SRC) $(nameArchive)/$(SAVE) $(nameArchive)/$(BINDIR) $(nameArchive)/$(OBJ) $(nameArchive)/$(DATA) || echo Fichier deja existant.
-	@$(CP) $(RESTORESRC) $(RESTOREHEAD) $(nameArchive)/$(SRC) || echo Rien a copier.
+	@mkdir $(nameArchive) $(nameArchive)/$(SRC) $(nameArchive)/$(BINDIR) $(nameArchive)/$(OBJ) $(nameArchive)/$(DATA) || echo Fichier deja existant.
+	@$(CP) $(SRCS) $(HEADS) $(nameArchive)/$(SRC) || echo Rien a copier.
+	@$(CP) $(DATA)/*.txt $(nameArchive)/$(DATA)
 	@$(CP) Makefile $(nameArchive)/
 
 clean:

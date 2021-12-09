@@ -1,12 +1,20 @@
 #ifndef COMPRESSION_H
 #define COMPRESSION_H
 
+/*
+	Le fichier header 'compression.h' regroupe les fonctions necessaire pour la compression d'un fichier.
+*/
+
+/* Bibliothèques */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "lecture.h"
 #include "arbre_huff.h"
 #include "decompression.h"
+
+/* Prototypes */
 
 void compression(listeChar* listeCarac, listeArbre* listTree, char* nomFichierEntre, char* nomFichierSorti);
 int calculNbrBits(char charRecherche, Arbre* tree);

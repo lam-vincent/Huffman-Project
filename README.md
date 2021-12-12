@@ -28,25 +28,30 @@ Grâce à la réalisation du makefile pour compiler le programme, il suffit d’
 
 - Pour compresser le fichier, la structure est la suivant :
   ```sh
-  ./bin/main -c [SOURCE] [DIRECTORY]
+  ./bin/huffman -c [SOURCE] [DIRECTORY]
   ```
 
 - Vous pouvez écrire : 
   ```sh
-  ./bin/main -c data/lorem.txt data/loremComp.txt
+  ./bin/huffman -c data/lorem.txt data/loremComp.txt
   ```
 
 - Pour décompresser le fichier, la structure est la suivant :
   ```sh
-  ./bin/main -d [SOURCE] [DIRECTORY]
+  ./bin/huffman -d [SOURCE] [DIRECTORY]
   ```
 
 - Vous pouvez écrire :
   ```sh
-  ./bin/main -d data/loremComp.txt data/loremDecomp.txt
+  ./bin/huffman -d data/loremComp.txt data/loremDecomp.txt
   ```
 
 Pour [DIRECTORY], vous pouvez choisir le nom de votre fichier en sortie.
+
+Pour plus d’information sur le fonctionnement de la ligne de commande, vous pouvez écrire :
+  ```sh
+  ./bin/huffman -h
+  ```
 
 <p align="right">(<a href="#top">retourner en haut de la page</a>)</p>
 

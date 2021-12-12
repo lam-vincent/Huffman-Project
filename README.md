@@ -48,7 +48,7 @@ Grâce à la réalisation du makefile pour compiler le programme, il suffit d’
 
 Pour [DIRECTORY], vous pouvez choisir le nom de votre fichier en sortie.
 
-Pour plus d’information sur le fonctionnement de la ligne de commande, vous pouvez écrire :
+- Pour plus d’information sur le fonctionnement de la ligne de commande, vous pouvez écrire :
   ```sh
   ./bin/huffman -h
   ```
